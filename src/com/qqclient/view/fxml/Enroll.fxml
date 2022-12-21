@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qqclient.view.controller.EnrollController">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0" layoutY="-2.0">
+         <image>
+            <Image url="/com/qqclient/view/pictures/background.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="123.0" layoutY="98.0" text="密码：">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="93.0" layoutY="206.0" text="QQ邮箱：">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <TextField fx:id="emailfield" layoutX="179.0" layoutY="200.0" prefHeight="36.0" prefWidth="290.0" promptText="请输入QQ邮箱" />
+      <Button layoutX="484.0" layoutY="207.0" mnemonicParsing="false" onAction="#SendEmail" style="-fx-background-color: #F4A9AA;" text="发送验证码" textFill="WHITE" />
+      <Label layoutX="105.0" layoutY="263.0" text="验证码：">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <TextField fx:id="Verificationcode" layoutX="179.0" layoutY="257.0" prefHeight="36.0" prefWidth="290.0" promptText="请输入验证码" />
+      <Button layoutX="199.0" layoutY="327.0" mnemonicParsing="false" onAction="#Enroll_" prefHeight="36.0" prefWidth="251.0" style="-fx-background-color: #F4A9AA;" text="立即注册" textFill="WHITE" />
+      <Label layoutX="123.0" layoutY="48.0" text="昵称：">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <TextField fx:id="name" layoutX="180.0" layoutY="42.0" prefHeight="36.0" prefWidth="290.0" promptText="请输入昵称" />
+      <Label layoutX="84.0" layoutY="149.0" text="确认密码：">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="passWordFieldAgain" layoutX="180.0" layoutY="143.0" prefHeight="36.0" prefWidth="290.0" promptText="请确认密码" />
+      <PasswordField fx:id="passWordField" layoutX="179.0" layoutY="93.0" prefHeight="36.0" prefWidth="290.0" promptText="请输入密码" />
+      <Label layoutX="470.0" layoutY="98.0" prefHeight="25.0" prefWidth="104.0" text="6~10个数字或字母" textFill="RED" />
+      <Label layoutX="469.0" layoutY="49.0" prefHeight="23.0" prefWidth="88.0" text="2~8个字符" textFill="RED" />
+   </children>
+</AnchorPane>
