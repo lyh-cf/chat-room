@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="224.0" prefWidth="508.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qqclient.view.controller.FriendFileMsgItemController">
+   <children>
+      <ImageView fx:id="friendHeadImage" fitHeight="50.0" fitWidth="50.0" layoutX="10.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="friendName" layoutX="70.0" layoutY="10.0" prefHeight="30.0" prefWidth="243.0" style="-fx-text-fill: BLACK;" text="Label" />
+      <Label fx:id="sendTime" layoutX="359.0" layoutY="10.0" prefHeight="30.0" prefWidth="159.0" style="-fx-text-fill: BLACK;" text="time" />
+      <ImageView fitHeight="137.0" fitWidth="159.0" layoutX="60.0" layoutY="41.0">
+         <image>
+            <Image url="@../pictures/文件下载.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="88.0" layoutY="187.0" mnemonicParsing="false" onAction="#openFile" prefHeight="23.0" prefWidth="103.0" style="-fx-background-color: #F4A9AA;" text="下载并打开文件" textFill="WHITE" />
+   </children>
+</AnchorPane>
