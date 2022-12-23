@@ -105,10 +105,12 @@ public class GroupPersonalInformationController implements Initializable {
         groupMembersListView.setCellFactory(new Callback<ListView<User>, ListCell<User>>() {//单元格工厂
             @Override
             public ListCell<User> call(ListView<User> param) {
+                ContextMenu contextMenu=new ContextMenu();//右键菜单
                 ListCell<User> listCell= new ListCell<User>() {
                     @Override
                     protected void updateItem(User item, boolean empty) {//自定义单元格
                         super.updateItem(item, empty);
+
                         if (!empty) {
 //                            setStyle("-fx-background-color:transparent");
                             HBox hBox = new HBox();
@@ -130,75 +132,85 @@ public class GroupPersonalInformationController implements Initializable {
                             else if(item.getUserStatus()==1)groupMembersItemController.setStatus("群管理");
                             else if(item.getUserStatus()==2)groupMembersItemController.setStatus("群主");
                             this.setGraphic(hBox);//加载到ListView中
+                            setOnMouseClicked(event -> {
+                                contextMenu.getItems().clear();//要先清除
+                                //设置右键菜单
+                                if(status==2){
+                                    if(item.getUserStatus()==0) {
+                                        MenuItem upItem = new MenuItem("设为管理员");
+                                        upItem.setOnAction(events -> {
+                                            String disposePeopleId = item.getUserId();
+                                            System.out.println("正在点击的人账号:" + disposePeopleId);
+                                            group.setUser(Local.user);
+                                            group.setGroupNumber(groupAccount.getText());
+                                            group.getDisposePeople().setUserId(disposePeopleId);
+                                            data.setDate(group);
+                                            data.setMesType(RequestEnum.MESSAGE_SetGroupManage);
+                                            ObjectOutputStream objectOutputStream;
+                                            try {
+                                                objectOutputStream = new ObjectOutputStream(QQView.socket.getOutputStream());
+                                                objectOutputStream.writeObject(data);//发送data对象
+                                            } catch (IOException e) {
+                                                e.printStackTrace();
+                                            }
+                                        });
+                                        contextMenu.getItems().addAll(upItem);
+                                    }
+                                    if(item.getUserStatus()!=2) {
+                                        MenuItem deleteItem = new MenuItem("踢出群聊");
+                                        deleteItem.setOnAction(events -> {
+                                            String disposePeopleId = item.getUserId();
+                                            int disposePeopleStatus = item.getUserStatus();
+                                            System.out.println("正在点击的人账号:" + disposePeopleId);
+                                            group.setUser(Local.user);
+                                            group.setUserStatus(status);
+                                            group.setGroupNumber(groupAccount.getText());
+                                            group.getDisposePeople().setUserId(disposePeopleId);
+                                            group.getDisposePeople().setUserStatus(disposePeopleStatus);
+                                            data.setDate(group);
+                                            data.setMesType(RequestEnum.MESSAGE_KickPeople);
+                                            ObjectOutputStream objectOutputStream;
+                                            try {
+                                                objectOutputStream = new ObjectOutputStream(QQView.socket.getOutputStream());
+                                                objectOutputStream.writeObject(data);//发送data对象
+                                            } catch (IOException e) {
+                                                e.printStackTrace();
+                                            }
+                                        });
+                                        contextMenu.getItems().addAll(deleteItem);
+                                    }
+                                }
+                                if(status==1){
+                                    if(item.getUserStatus()==0) {
+                                        MenuItem deleteItem = new MenuItem("踢出群聊");
+                                        deleteItem.setOnAction(events -> {
+                                            String disposePeopleId = item.getUserId();
+                                            int disposePeopleStatus = item.getUserStatus();
+                                            System.out.println("正在点击的人账号:" + disposePeopleId);
+                                            group.setUser(Local.user);
+                                            group.setUserStatus(status);
+                                            group.setGroupNumber(groupAccount.getText());
+                                            group.getDisposePeople().setUserId(disposePeopleId);
+                                            group.getDisposePeople().setUserStatus(disposePeopleStatus);
+                                            data.setDate(group);
+                                            data.setMesType(RequestEnum.MESSAGE_KickPeople);
+                                            ObjectOutputStream objectOutputStream;
+                                            try {
+                                                objectOutputStream = new ObjectOutputStream(QQView.socket.getOutputStream());
+                                                objectOutputStream.writeObject(data);//发送data对象
+                                            } catch (IOException e) {
+                                                e.printStackTrace();
+                                            }
+                                        });
+                                        contextMenu.getItems().addAll(deleteItem);
+                                    }
+                                }
+                            });
                         } else {
                             this.setGraphic(null);
                         }
                     }
                 };
-                ContextMenu contextMenu=new ContextMenu();
-                if(status==2){
-                    MenuItem upItem=new MenuItem("设为管理员");
-                    upItem.setOnAction(event -> {
-                        String disposePeopleId=listCell.getItem().getUserId();
-                        System.out.println("正在点击的人账号:"+disposePeopleId);
-                        group.setUser(Local.user);
-                        group.setGroupNumber(groupAccount.getText());
-                        group.getDisposePeople().setUserId(disposePeopleId);
-                        data.setDate(group);
-                        data.setMesType(RequestEnum.MESSAGE_SetGroupManage);
-                        ObjectOutputStream objectOutputStream;
-                        try {
-                            objectOutputStream = new ObjectOutputStream(QQView.socket.getOutputStream());
-                            objectOutputStream.writeObject(data);//发送data对象
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    });
-                    MenuItem deleteItem=new MenuItem("踢出群聊");
-                    deleteItem.setOnAction(event -> {
-                        String disposePeopleId=listCell.getItem().getUserId();
-                        int disposePeopleStatus=listCell.getItem().getUserStatus();
-                        System.out.println("正在点击的人账号:"+disposePeopleId);
-                        group.setUser(Local.user);
-                        group.setUserStatus(status);
-                        group.setGroupNumber(groupAccount.getText());
-                        group.getDisposePeople().setUserId(disposePeopleId);
-                        group.getDisposePeople().setUserStatus(disposePeopleStatus);
-                        data.setDate(group);
-                        data.setMesType(RequestEnum.MESSAGE_KickPeople);
-                        ObjectOutputStream objectOutputStream;
-                        try {
-                            objectOutputStream = new ObjectOutputStream(QQView.socket.getOutputStream());
-                            objectOutputStream.writeObject(data);//发送data对象
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    });
-                    contextMenu.getItems().addAll(upItem,deleteItem);
-                }
-                if(status==1){
-                    MenuItem deleteItem=new MenuItem("踢出群聊");
-                    deleteItem.setOnAction(event -> {
-                        String disposePeopleId=listCell.getItem().getUserId();
-                        int disposePeopleStatus=listCell.getItem().getUserStatus();
-                        System.out.println("正在点击的人账号:"+disposePeopleId);
-                        group.setUser(Local.user);
-                        group.setUserStatus(status);
-                        group.setGroupNumber(groupAccount.getText());
-                        group.getDisposePeople().setUserId(disposePeopleId);
-                        group.getDisposePeople().setUserStatus(disposePeopleStatus);
-                        data.setDate(group);
-                        data.setMesType(RequestEnum.MESSAGE_KickPeople);
-                        ObjectOutputStream objectOutputStream;
-                        try {
-                            objectOutputStream = new ObjectOutputStream(QQView.socket.getOutputStream());
-                            objectOutputStream.writeObject(data);//发送data对象
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    });
-                    contextMenu.getItems().addAll(deleteItem);
-                }
                 listCell.emptyProperty().addListener((obs,wasEmpty,isNowEmpty)->{
                     if(isNowEmpty){
                         listCell.setContextMenu(null);
@@ -271,7 +283,7 @@ public class GroupPersonalInformationController implements Initializable {
     }
     @FXML
     void changeGroupHeadImage(ActionEvent event) throws IOException {
-       File file= ChooseFile.chooseFile(Return);
+        File file= ChooseFile.chooseFile(Return);
         if(file!=null){
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(QQView.socket.getOutputStream());
             group.setGroupLogo(file.toURI().toString());

@@ -81,8 +81,8 @@ public class ChatPageController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Controller.setChatPageController(this);
-         FXMLLoader fxmlLoader=new FXMLLoader();
-         fxmlLoader.setLocation(getClass().getResource("/com/qqclient/view/fxml/Emoji.fxml"));
+        FXMLLoader fxmlLoader=new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/com/qqclient/view/fxml/Emoji.fxml"));
         Parent root= null;
         try {
             root = fxmlLoader.load();
@@ -106,6 +106,7 @@ public class ChatPageController implements Initializable {
                  }
              }
          });
+         //设置文本输入框
          name.setText(user.getName());
          PersonalizedSignature.setText(user.getPersonalizedSignature());
          //放置头像
@@ -387,6 +388,7 @@ public class ChatPageController implements Initializable {
         File file=ChooseFile.chooseFile(Return);
 
     }
+
     public void send(){
         if(getterId!=null) {
             if (!sendContent.getText().equals("")) {
@@ -472,7 +474,7 @@ public class ChatPageController implements Initializable {
          if(event.getCode()== KeyCode.ENTER){
              send();
              Timer timer=new Timer();
-             timer.schedule(new ClearSendContent(),30);
+             timer.schedule(new ClearSendContent(),20);
          }
     }
 

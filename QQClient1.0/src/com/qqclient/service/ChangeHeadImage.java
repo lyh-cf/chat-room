@@ -4,19 +4,8 @@ import com.qqclient.pojo.Data;
 import com.qqclient.pojo.Local;
 import com.qqclient.pojo.User;
 import com.qqclient.view.Controller;
-import com.qqclient.view.app.ChangeHeadImageAPP;
-import com.qqclient.view.app.ChangeMessageAPP;
-import com.qqclient.view.controller.ChangeMessageController;
-import com.qqclient.view.app.ChatPageAPP;
-import com.qqclient.view.controller.ChatPageController;
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
-
-import java.awt.image.renderable.ContextualRenderedImageFactory;
 
 public class ChangeHeadImage {
     public static void changeHeadImage(Data data){

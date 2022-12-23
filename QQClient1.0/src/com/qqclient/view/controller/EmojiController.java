@@ -22,6 +22,9 @@ public class EmojiController implements Initializable {
                 emojiVbox.getChildren().add(hBox);
                 hBox=new HBox();
             }
+//            if(i==180){
+//                System.out.println("加载了180个表情");
+//            }
         }
     }
 

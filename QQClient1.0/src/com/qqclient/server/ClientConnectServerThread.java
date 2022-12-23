@@ -11,13 +11,14 @@ public class ClientConnectServerThread extends Thread {
     private Socket socket;
     //构造器可以接受一个Socket对象
     private Data data=new Data();
+    private boolean flag=true;//false则关闭线程
     public ClientConnectServerThread(Socket socket) {
         this.socket = socket;
     }
     @Override
     public void run() {
         //因为Thread需要在后台和服务器通信，因此我们while循环
-        while (true) {
+        while (flag) {
             ObjectInputStream objectInputStream = null;
             try {
                 objectInputStream = new ObjectInputStream(socket.getInputStream());
@@ -65,6 +66,8 @@ public class ClientConnectServerThread extends Thread {
                 //退出登录
                 else if(data.getMesType().equals(RequestEnum.MESSAGE_SignOut_SUCCEED)){
                       SignOut.signOut();
+                      socket.close();
+                      flag=false;
                 }
                 //处理好友申请
                 else if(data.getMesType().equals(RequestEnum.MESSAGE_AgreeFriendApplication)){

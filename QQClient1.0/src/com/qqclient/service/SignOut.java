@@ -3,6 +3,8 @@ package com.qqclient.service;
 import com.qqclient.view.app.*;
 import javafx.application.Platform;
 
+import java.io.IOException;
+
 public class SignOut {
     public static void  signOut() {
         Platform.runLater(new Runnable() {
