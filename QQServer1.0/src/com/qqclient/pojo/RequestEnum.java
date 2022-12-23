@@ -1,0 +1,74 @@
+package com.qqclient.pojo;
+
+public enum RequestEnum {
+    MESSAGE_LOGIN, //表示请求登录
+    MESSAGE_LOGIN_SUCCEED, //表示登录成功
+    MESSAGE_LOGIN_Msg_SUCCEED,
+    MESSAGE_LOGIN_Msg_FAIL,//登录信息错误
+    MESSAGE_LOGIN_CheckState,//检查登录状态
+    MESSAGE_LOGIN_FAIL, // 表示登录失败
+    MESSAGE_Enroll_SUCCEED,//注册成功
+    MESSAGE_Enroll,//请求注册
+    MESSAGE_Enroll_FAIL,//注册失败
+    MESSAGE_LookingforWord,//请求找回密码
+    MESSAGE_LookingforWord_SUCCEED,//找回密码成功
+    MESSAGE_LookingforWord_FAIL,//找回密码失败
+    MESSAGE_ChangeWord,//请求修改密码
+    MESSAGE_ChangeWord_SUCCEED,//修改密码成功
+    MESSAGE_ChangeWord_FAIL,//修改密码失败
+    MESSAGE_VerificationCode,//请求发送验证码
+    MESSAGE_VerificationCode_SUCCEED,//验证码发送成功
+    MESSAGE_VerificationCode_FAIL,//验证码发送失败
+    MESSAGE_ChangeMsg,//请求修改信息
+    MESSAGE_ChangeMsg_SUCCEED,//允许修改信息
+    MESSAGE_PersonalInformation,//请求个人信息
+    MESSAGE_PersonalInformation_SUCCEED,//允许返回个人信息
+    MESSAGE_ChangeHeadImage,//更改头像
+    MESSAGE_ChangeHeadImage_SUCCEED,//允许更改头像
+    MESSAGE_CheckUserID,//查找用户
+    MESSAGE_CheckUserID_SUCCEED,
+    MESSAGE_CheckUserID_FAIL,
+    MESSAGE_FriendApplication,//好友申请
+    MESSAGE_FriendApplication_SUCCEED,
+    MESSAGE_FriendApplication_FAIL,
+    MESSAGE_CheckFriendApplication,//查看好友申请
+    MESSAGE_CheckFriendApplication_SUCCEED,
+    MESSAGE_CheckFriendApplication_FAIL,
+    MESSAGE_AgreeFriendApplication,//同意好友申请
+    MESSAGE_AgreeFriendApplication_FAIL,//已经是好友了
+    MESSAGE_AgreeGroupApplication,//同意入群申请
+    MESSAGE_RefuseFriendApplication,//拒绝好友申请
+    MESSAGE_RefuseGroupApplication,//拒绝入群申请
+    MESSAGE_RefuseFriendApplication_FAIL,//已经是好友了
+    MESSAGE_SignOut,//退出登录
+    MESSAGE_SignOut_SUCCEED,
+    MESSAGE_PassFriendApplication_SUCCEED,//对方通过了你的好友申请
+    MESSAGE_PassGroupApplication_SUCCEED,//对方通过了你的入群申请
+    MESSAGE_FriendPersonalInformation,//请求好友信息
+    MESSAGE_FriendPersonalInformation_SUCCEED,
+    MESSAGE_DeleteFriend,//删除好友
+    MESSAGE_DeleteFriend_SUCCEED,
+    MESSAGE_PassDeleteFriend_SUCCEED,//对方把你删掉了
+    MESSAGE_SendFriendMsg,//给好友发消息
+    MESSAGE_SendFriendMsg_SUCCEED,
+    MESSAGE_SendOnlineFriend_SUCCEED,//好友刚好在线
+    MESSAGE_CheckHistoricalMessages,//查看历史消息
+    MESSAGE_CheckHistoricalMessages_SUCCEED,
+    MESSAGE_CreateGroup,
+    MESSAGE_CheckGroupInformation,
+    MESSAGE_ChangeGroupHeadImage,//更改群头像
+    MESSAGE_ChangeGroupInformation,//更改群资料
+    MESSAGE_QuitGroup,//退出群聊
+    MESSAGE_DisbandGroup,//解散群
+    MESSAGE_PassDisbandGroup,
+    MESSAGE_SetGroupManage,//设管理员
+    MESSAGE_SetGroupManage_FAIL,//设管理员失败
+    MESSAGE_KickPeople,//踢人
+    MESSAGE_KickPeople_FAIL,//踢人失败
+    MESSAGE_PassKickPeople,//被踢了
+    MESSAGE_FriendOnline,
+    MESSAGE_FriendOffline,
+    MESSAGE_AddCommonPhrases,
+    MESSAGE_AddCommonPhrases_FAIL,
+    MESSAGE_DeleteCommonPhrases,
+}
